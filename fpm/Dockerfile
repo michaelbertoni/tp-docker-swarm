@@ -3,7 +3,7 @@ FROM debian:stretch
 RUN \
         apt-get update && \
         apt-get install -y  wget && \
-        apt-get install -y --no-install-recommends php7.0 php7.0-fpm && \
+        apt-get install -y --no-install-recommends php7.0 php7.0-fpm php7.0-mysql && \
         wget https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb && \
         dpkg -i dumb-init_*.deb
  

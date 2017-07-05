@@ -1,4 +1,4 @@
-version '3.2'
+version: '3.2'
 
 services:
   apache:
@@ -20,6 +20,8 @@ services:
 
   percona:
     image: percona:custom
+    environment:
+      - DB_NAME=wordpress
     volumes:
       - percona-data:/var/lib/mysql
     secrets:
