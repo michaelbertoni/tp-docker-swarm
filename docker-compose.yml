@@ -1,0 +1,41 @@
+version '3.2'
+
+services:
+  apache:
+    image: apache:custom
+    ports:
+      - 80:80
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - internal
+      - front
+
+  php-fpm:
+    image: php-fpm:custom
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - internal
+
+  percona:
+    image: percona:custom
+    volumes:
+      - percona-data:/var/lib/mysql
+    secrets:
+      - mysql-root-passwd
+    networks:
+      - internal
+
+volumes:
+  percona-data:
+
+secrets:
+  mysql-root-passwd:
+    external: true
+
+networks:
+  internal:
+    driver: overlay
+  front:
+    driver: overlay
